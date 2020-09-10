@@ -44,7 +44,7 @@ RWRD = 0.37
 RESPONSE_TIME = 2
 # CHANGE PARAMETER BELOW BEFORE RUNNING
 # Font for displaying the instructions
-TTF_FONT = join(CURRENT_DIR, 'OpenSans-SemiBold.ttf')
+TTF_FONT = join(CURRENT_DIR, 'Lato-Reg.ttf')
 # Configuration for tutorial and game
 class TutorialConfig:
     final_state_colors = ('red', 'black')
@@ -115,11 +115,11 @@ def main():
             GameConfig.num_trials = 2
             GameConfig.block = 1
         else:
-            fullscr = True # Fullscreen for the participants
+            fullscr = False # Fullscreen for the participants
 
         # Create window
         win = visual.Window(
-            fullscr=fullscr, size=[1280, 1024], units='pix', color='#404040',
+            fullscr=fullscr, size=[1100, 900], units='pix', color='#404040',
             checkTiming=False)
         win.mouseVisible = False
 

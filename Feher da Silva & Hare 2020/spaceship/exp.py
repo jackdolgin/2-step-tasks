@@ -58,7 +58,7 @@ RESULTS_DIR = join(CURRENT_DIR, 'results')
 
 # CHANGE PARAMETER BELOW BEFORE RUNNING
 # Font for displaying the instructions
-TTF_FONT = join(CURRENT_DIR, 'Noteworthy-Bold.ttf')
+TTF_FONT = join(CURRENT_DIR, 'Lato-Reg.ttf')
 
 # ------------------------------------
 
@@ -183,7 +183,7 @@ if __name__ == '__main__':
         NUM_TRIALS = 2
         BLOCK = NUM_TRIALS // 2
     else:
-        fullscr = True
+        fullscr = False
 
     # Settings
     simultaneous = (condition == 'simultaneous')
@@ -210,7 +210,7 @@ if __name__ == '__main__':
 
     # Create window
     win = visual.Window(
-        fullscr=fullscr, size=[1280, 1024], units='pix', color='#121321',
+        fullscr=fullscr, size=[1180, 1024], units='pix', color='#121321',
         checkTiming=False)
     win.mouseVisible = False
 
@@ -390,7 +390,7 @@ if __name__ == '__main__':
             for p in range(2)
             for o in range(2)
         }
-        
+
         # Tutorial instructions
         display_instructions('tutorial_instructions.txt', 'practice_flights.png')
 
@@ -481,7 +481,7 @@ if __name__ == '__main__':
                     ticket_blank.draw()
                     win.flip()
                     core.wait(0.5)
-                    
+
                     ticketmachine_images[inist].draw()
                     ticket_blank.draw()
                     tutorial_drawing.image = join(ASSETS_DIR, 'tutorial.Left_{}.png'.format(spaceships[0]))
@@ -550,7 +550,7 @@ if __name__ == '__main__':
                     tutorial_text.draw()
                     win.flip()
                     core.wait(4)
-                    
+
                     finalst = anpl if spaceship == anss else 1 - anpl
                     if common:
                         common_images[(spaceship, finalst)].draw()
@@ -579,7 +579,7 @@ if __name__ == '__main__':
                         rare_images[(spaceship, finalst)].draw()
                         win.flip()
                         core.wait(0.5)
-                    
+
                     # On the planet
                     planet_images[finalst].draw()
                     win.flip()
@@ -657,7 +657,7 @@ if __name__ == '__main__':
         del tutorial_text
         # Game instructions
         display_instructions('game_instructions.txt', 'quiz.png')
-        
+
         # Quiz
         quiz_text = visual.TextStim(win=win,
             pos=(-450, +50),
@@ -703,7 +703,7 @@ if __name__ == '__main__':
         with io.open(join(CURRENT_DIR, 'quiz.py'), encoding='utf-8') as qf:
             quiz = qf.read()
         quiz = eval(quiz)
-        
+
         answered = []
         while True:
             for qn, (question, answer, correct, maxanswer) in enumerate(quiz):
@@ -730,7 +730,7 @@ if __name__ == '__main__':
                 core.wait(3)
             if len(answered) == len(quiz):
                 break
-        
+
         del quiz_correct
         del quiz_feedback
         del quiz_incorrect
@@ -741,7 +741,7 @@ if __name__ == '__main__':
         win.flip()
         key = event.waitKeys(keyList=['space'])[0]
         del middle_image
-        
+
         # Game
         # Message
         msg = visual.TextStim(
@@ -837,7 +837,7 @@ if __name__ == '__main__':
                         rare_images[(spaceship, finalst)].draw()
                     win.flip()
                     core.wait(1)
-                        
+
                     # On the planet
                     planet_images[finalst].draw()
                     choice2_available.draw()
@@ -902,10 +902,10 @@ if __name__ == '__main__':
         win.close()
 
         # Questionnaire
-        
+
         import wx
         class Questionnaire(wx.Frame):
-            def __init__(self, parent, id, title): 
+            def __init__(self, parent, id, title):
                 font = wx.SystemSettings_GetFont(wx.SYS_SYSTEM_FONT)
                 font.SetPointSize(14)
                 wx.Frame.__init__(self, parent, id, title, size=(500, 600), style=wx.CAPTION)
@@ -922,7 +922,7 @@ if __name__ == '__main__':
                 vbox.Add(button, 1, wx.ALIGN_CENTER, border=15)
                 self.Bind(wx.EVT_BUTTON, self.OnClose, id=1)
                 panel.SetSizer(vbox)
-                self.Centre() 
+                self.Centre()
             def OnClose(self, event):
                 # Save questionnaire in a file
                 with open(join(RESULTS_DIR, '{}_{}_{}_questionnaire.txt'.format(part_code, condition, computer_name)), 'w') as outf:
@@ -930,9 +930,9 @@ if __name__ == '__main__':
                 self.Close()
                 goodbye = Goodbye(None, -1, 'Goodbye')
                 goodbye.Show()
-        
+
         class Goodbye(wx.Frame):
-            def __init__(self, parent, id, title): 
+            def __init__(self, parent, id, title):
                 font = wx.SystemSettings_GetFont(wx.SYS_SYSTEM_FONT)
                 font.SetPointSize(14)
                 wx.Frame.__init__(self, parent, id, title, size=(500, 100), style=wx.CAPTION)
@@ -943,17 +943,17 @@ if __name__ == '__main__':
                 msg.SetFont(font)
                 vbox.Add(msg, 1, wx.EXPAND|wx.ALL, border=15)
                 panel.SetSizer(vbox)
-                self.Centre() 
+                self.Centre()
 
-        class MyApp(wx.App): 
-            def OnInit(self): 
+        class MyApp(wx.App):
+            def OnInit(self):
                 dlg = Questionnaire(None, -1, 'Questionnaire')
                 dlg.Show()
-                return True 
+                return True
 
-        app = MyApp(0) 
+        app = MyApp(0)
         app.MainLoop()
-        
+
     except Exception as exc:
         print('An exception occurred:', str(exc))
         sys.stdout.flush()
