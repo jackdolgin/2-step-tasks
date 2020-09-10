@@ -44,7 +44,7 @@ RWRD = 0.37
 RESPONSE_TIME = 2
 # CHANGE PARAMETER BELOW BEFORE RUNNING
 # Font for displaying the instructions
-TTF_FONT = join(CURRENT_DIR, 'Lato-Reg.ttf')
+TTF_FONT = join(CURRENT_DIR, 'OpenSans-SemiBold.ttf')
 # Configuration for tutorial and game
 class TutorialConfig:
     final_state_colors = ('red', 'black')

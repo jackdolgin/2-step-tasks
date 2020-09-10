@@ -58,7 +58,7 @@ RESULTS_DIR = join(CURRENT_DIR, 'results')
 
 # CHANGE PARAMETER BELOW BEFORE RUNNING
 # Font for displaying the instructions
-TTF_FONT = join(CURRENT_DIR, 'Lato-Reg.ttf')
+TTF_FONT = join(CURRENT_DIR, 'Noteworthy-Bold.ttf')
 
 # ------------------------------------
 
